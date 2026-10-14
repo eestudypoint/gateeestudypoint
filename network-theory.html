@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GATE EE Network Theory notes, formulas, concepts and practice MCQs.">
+<title>Network Theory | GATE EE Study Point</title>
+
+<style>
+:root {
+  --navy:#10213a;
+  --blue:#2563eb;
+  --bg:#f4f7fb;
+  --text:#17243b;
+  --muted:#64748b;
+  --border:#e2e8f0;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.7;
+}
+a {text-decoration:none}
+.container {width:min(1050px,92%);margin:auto}
+header {
+  background:var(--navy);
+  color:white;
+  padding:17px 0;
+}
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.brand {color:white;font-size:17px;font-weight:bold}
+.nav a {color:#dbeafe;font-size:14px}
+.hero {
+  background:linear-gradient(125deg,#10213a,#2563eb);
+  color:white;
+  padding:55px 0;
+}
+.tag {
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+  color:#bfdbfe;
+}
+.hero h1 {
+  font-size:clamp(30px,5vw,46px);
+  line-height:1.2;
+  margin:12px 0;
+}
+.hero p {color:#dbeafe;max-width:650px}
+.button {
+  display:inline-block;
+  background:white;
+  color:var(--navy);
+  padding:10px 17px;
+  border-radius:8px;
+  font-weight:bold;
+  margin-top:12px;
+}
+.layout {
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr);
+  gap:25px;
+  padding-top:30px;
+  padding-bottom:50px;
+}
+.sidebar {
+  background:white;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  align-self:start;
+  position:sticky;
+  top:15px;
+}
+.sidebar strong {display:block;margin-bottom:10px}
+.sidebar a {
+  display:block;
+  color:#475569;
+  padding:7px 0;
+  font-size:14px;
+}
+.sidebar a:hover {color:var(--blue)}
+section {scroll-margin-top:20px}
+.panel {
+  background:white;
+  padding:23px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  margin-bottom:20px;
+}
+h2 {font-size:24px;line-height:1.3;margin-top:0}
+h3 {font-size:18px}
+.muted {color:var(--muted)}
+.callout {
+  background:#eff6ff;
+  border-left:4px solid var(--blue);
+  padding:13px 16px;
+  border-radius:5px;
+  margin:15px 0;
+}
+.formula {
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px 15px;
+  margin:10px 0;
+}
+.formula strong {color:#1d4ed8}
+table {width:100%;border-collapse:collapse;font-size:14px}
+th,td {
+  text-align:left;
+  padding:11px;
+  border-bottom:1px solid var(--border);
+}
+th {background:#eff6ff}
+.table-wrap {overflow-x:auto}
+.quiz-question {
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  margin:15px 0;
+}
+.quiz-question p {font-weight:bold;margin-top:0}
+.option {
+  display:block;
+  margin:9px 0;
+  cursor:pointer;
+}
+.option input {margin-right:8px}
+.feedback {font-size:14px;font-weight:bold;margin-top:8px}
+.correct {color:#15803d}
+.incorrect {color:#b91c1c}
+.quiz-button {
+  background:var(--blue);
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:12px 18px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+#result {
+  margin-top:15px;
+  padding:15px;
+  background:#eff6ff;
+  border-radius:8px;
+  display:none;
+}
+footer {
+  background:var(--navy);
+  color:#dbeafe;
+  text-align:center;
+  padding:25px 10px;
+  font-size:13px;
+}
+@media(max-width:720px) {
+  .layout {grid-template-columns:1fr;gap:15px}
+  .sidebar {position:static}
+  .sidebar nav {
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px 15px;
+  }
+  .sidebar a {padding:3px 0}
+  .panel {padding:17px}
+  th,td {padding:8px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">⚡ GATE EE Study Point</a>
+    <a href="index.html">← Back to Home</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="tag">GATE EE • SUBJECT NOTES</span>
+    <h1>Network Theory</h1>
+    <p>Build strong circuit-analysis concepts with concise notes, essential formulas, network theorems and practice questions.</p>
+    <a class="button" href="#quiz">Test Your Knowledge ↓</a>
+  </div>
+</div>
+
+<div class="container layout">
+
+  <aside class="sidebar">
+    <strong>📚 On This Page</strong>
+    <nav>
+      <a href="#basics">Basic Concepts</a>
+      <a href="#laws">Circuit Laws</a>
+      <a href="#formulas">Important Formulas</a>
+      <a href="#theorems">Network Theorems</a>
+      <a href="#transients">Transient Analysis</a>
+      <a href="#quiz">Practice MCQs</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <section class="panel" id="basics">
+      <h2>1. Basic Concepts</h2>
+      <p>Network Theory studies the behaviour of electrical circuits containing resistors, capacitors, inductors and sources.</p>
+
+      <h3>Important terms</h3>
+      <ul>
+        <li><strong>Node:</strong> A point connecting two or more circuit elements.</li>
+        <li><strong>Branch:</strong> A path containing a circuit element or elements between nodes.</li>
+        <li><strong>Loop:</strong> Any closed path in a circuit.</li>
+        <li><strong>Mesh:</strong> A loop that contains no other loop inside it in a planar circuit.</li>
+        <li><strong>Active element:</strong> An element capable of supplying energy, such as an ideal source.</li>
+        <li><strong>Passive element:</strong> An element that absorbs or stores energy, such as R, L or C.</li>
+        <li><strong>Linear circuit:</strong> A circuit whose response satisfies superposition.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>GATE tip:</strong> A mesh is always a loop, but a loop is not necessarily a mesh.
+      </div>
+    </section>
+
+    <section class="panel" id="laws">
+      <h2>2. Kirchhoff's Laws</h2>
+
+      <h3>Kirchhoff's Current Law (KCL)</h3>
+      <p>The algebraic sum of currents at a node is zero.</p>
+      <div class="formula">
+        <strong>Σ I = 0</strong><br>
+        Total current entering a node = Total current leaving the node.
+      </div>
+
+      <h3>Kirchhoff's Voltage Law (KVL)</h3>
+      <p>The algebraic sum of voltages around a closed loop is zero.</p>
+      <div class="formula">
+        <strong>Σ V = 0</strong><br>
+        Sum of voltage rises = Sum of voltage drops.
+      </div>
+
+      <h3>Ohm's Law</h3>
+      <div class="formula"><strong>V = IR</strong></div>
+      <p>Here V is voltage, I is current and R is resistance.</p>
+    </section>
+
+    <section class="panel" id="formulas">
+      <h2>3. Important Formula Sheet</h2>
+
+      <h3>Resistance and Power</h3>
+      <div class="formula"><strong>Series resistors:</strong> R<sub>eq</sub> = R₁ + R₂ + ... + Rₙ</div>
+      <div class="formula"><strong>Parallel resistors:</strong> 1/R<sub>eq</sub> = 1/R₁ + 1/R₂ + ... + 1/Rₙ</div>
+      <div class="formula"><strong>Electrical power:</strong> P = VI = I²R = V²/R</div>
+
+      <h3>Capacitor and Inductor</h3>
+      <div class="formula"><strong>Capacitor:</strong> i = C(dv/dt)</div>
+      <div class="formula"><strong>Capacitor energy:</strong> W = ½CV²</div>
+      <div class="formula"><strong>Inductor:</strong> v = L(di/dt)</div>
+      <div class="formula"><strong>Inductor energy:</strong> W = ½LI²</div>
+
+      <h3>Time Constants</h3>
+      <div class="formula"><strong>RC circuit:</strong> τ = R<sub>th</sub>C</div>
+      <div class="formula"><strong>RL circuit:</strong> τ = L/R<sub>th</sub></div>
+      <p class="muted">For first-order circuits, the response reaches approximately 63.2% of its total change after one time constant during a rising exponential response.</p>
+
+      <h3>AC Circuit Impedance</h3>
+      <div class="formula"><strong>Resistor:</strong> Z<sub>R</sub> = R</div>
+      <div class="formula"><strong>Inductor:</strong> Z<sub>L</sub> = jωL</div>
+      <div class="formula"><strong>Capacitor:</strong> Z<sub>C</sub> = 1/(jωC)</div>
+      <div class="formula"><strong>Resonance (ideal series RLC):</strong> ω₀ = 1/√(LC)</div>
+    </section>
+
+    <section class="panel" id="theorems">
+      <h2>4. Important Network Theorems</h2>
+
+      <h3>Superposition Theorem</h3>
+      <p>In a linear circuit with multiple independent sources, the response is the algebraic sum of responses due to each independent source acting alone.</p>
+      <ul>
+        <li>Deactivate an ideal independent voltage source by replacing it with a short circuit.</li>
+        <li>Deactivate an ideal independent current source by replacing it with an open circuit.</li>
+        <li>Keep dependent sources active.</li>
+        <li>Superposition applies to voltage and current, not directly to power.</li>
+      </ul>
+
+      <h3>Thevenin's Theorem</h3>
+      <p>A linear two-terminal network can be represented by an equivalent voltage source V<sub>th</sub> in series with resistance R<sub>th</sub> (or impedance Z<sub>th</sub> in AC analysis).</p>
+      <div class="formula"><strong>V<sub>th</sub> = Open-circuit terminal voltage</strong></div>
+      <div class="formula"><strong>R<sub>th</sub> = Equivalent resistance seen from the terminals</strong></div>
+      <p>For independent sources only, deactivate the sources when finding R<sub>th</sub>. With dependent sources, use a test source or another valid method.</p>
+
+      <h3>Norton's Theorem</h3>
+      <p>A linear two-terminal network can be represented by a current source I<sub>N</sub> in parallel with R<sub>N</sub>.</p>
+      <div class="formula"><strong>I<sub>N</sub> = Short-circuit terminal current</strong></div>
+      <div class="formula"><strong>R<sub>N</sub> = R<sub>th</sub></strong></div>
+
+      <h3>Maximum Power Transfer</h3>
+      <p>For a DC resistive network, maximum power is delivered to the load when the load resistance equals the Thevenin resistance.</p>
+      <div class="formula"><strong>R<sub>L</sub> = R<sub>th</sub></strong></div>
+      <div class="formula"><strong>P<sub>max</sub> = V<sub>th</sub>²/(4R<sub>th</sub>)</strong></div>
+      <p class="muted">For AC networks, maximum average power transfer occurs when the load impedance is the complex conjugate of the Thevenin impedance.</p>
+    </section>
+
+    <section class="panel" id="transients">
+      <h2>5. First-Order Transient Analysis</h2>
+      <p>In a first-order circuit, the natural response decays exponentially. For a step response, the final value and initial value determine the response.</p>
+
+      <div class="formula">
+        <strong>General form:</strong><br>
+        x(t) = x(∞) + [x(0⁺) − x(∞)]e<sup>−t/τ</sup>
+      </div>
+
+      <ul>
+        <li>Capacitor voltage cannot change instantaneously under finite current.</li>
+        <li>Inductor current cannot change instantaneously under finite voltage.</li>
+        <li>At DC steady state, an ideal capacitor behaves as an open circuit.</li>
+        <li>At DC steady state, an ideal inductor behaves as a short circuit.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Remember:</strong> v<sub>C</sub>(0⁺) = v<sub>C</sub>(0⁻) and i<sub>L</sub>(0⁺) = i<sub>L</sub>(0⁻), assuming no impulsive excitation.
+      </div>
+    </section>
+
+    <section class="panel" id="quiz">
+      <h2>6. Practice MCQs</h2>
+      <p class="muted">Attempt all five questions, then click Check Answers to see your score and explanations.</p>
+
+      <form id="quizForm">
+
+        <div class="quiz-question" data-answer="b" data-explanation="For 6 Ω and 3 Ω in parallel, Req = (6 × 3)/(6 + 3) = 2 Ω.">
+          <p>Q1. Two resistors of 6 Ω and 3 Ω are connected in parallel. Find the equivalent resistance.</p>
+          <label class="option"><input type="radio" name="q1" value="a"> 9 Ω</label>
+          <label class="option"><input type="radio" name="q1" value="b"> 2 Ω</label>
+          <label class="option"><input type="radio" name="q1" value="c"> 3 Ω</label>
+          <label class="option"><input type="radio" name="q1" value="d"> 1 Ω</label>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-answer="c" data-explanation="KCL follows from conservation of electric charge.">
+          <p>Q2. Kirchhoff's Current Law is based on the conservation of:</p>
+          <label class="option"><input type="radio" name="q2" value="a"> Energy</label>
+          <label class="option"><input type="radio" name="q2" value="b"> Momentum</label>
+          <label class="option"><input type="radio" name="q2" value="c"> Electric charge</label>
+          <label class="option"><input type="radio" name="q2" value="d"> Power</label>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-answer="a" data-explanation="For an RC circuit, τ = RC = 2000 × 0.0005 = 1 second.">
+          <p>Q3. An RC circuit has R = 2 kΩ and C = 500 μF. Its time constant is:</p>
+          <label class="option"><input type="radio" name="q3" value="a"> 1 s</label>
+          <label class="option"><input type="radio" name="q3" value="b"> 0.1 s</label>
+          <label class="option"><input type="radio" name="q3" value="c"> 10 s</label>
+          <label class="option"><input type="radio" name="q3" value="d"> 100 s</label>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-answer="d" data-explanation="An ideal capacitor acts as an open circuit under DC steady-state conditions.">
+          <p>Q4. At DC steady state, an ideal capacitor behaves as a:</p>
+          <label class="option"><input type="radio" name="q4" value="a"> Short circuit</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Voltage source</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Current source</label>
+          <label class="option"><input type="radio" name="q4" value="d"> Open circuit</label>
+          <div class="feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-answer="b" data-explanation="For maximum power transfer in a DC resistive network, RL = Rth.">
+          <p>Q5. In a DC resistive network, maximum power is transferred to the load when:</p>
+          <label class="option"><input type="radio" name="q5" value="a"> RL = 0</label>
+          <label class="option"><input type="radio" name="q5" value="b"> RL = Rth</label>
+          <label class="option"><input type="radio" name="q5" value="c"> RL = 2Rth</label>
+          <label class="option"><input type="radio" name="q5" value="d"> RL is infinite</label>
+          <div class="feedback"></div>
+        </div>
+
+        <button type="submit" class="quiz-button">Check Answers</button>
+        <button type="button" class="quiz-button" id="reset" style="background:#475569;margin-left:6px">Try Again</button>
+      </form>
+
+      <div id="result" role="status" aria-live="polite"></div>
+    </section>
+
+    <div class="panel">
+      <h2>Keep Practising!</h2>
+      <p>Revise the formulas, understand the underlying concepts and solve questions regularly. This page is a starting point; add more detailed notes and topic-wise PYQs as your study library grows.</p>
+      <a class="button" href="index.html">← Back to Home</a>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <strong>⚡ GATE EE Study Point</strong>
+  <p>Learn · Practise · Improve</p>
+  <p>© 2026 GATE EE Study Point</p>
+</footer>
+
+<script>
+const form = document.getElementById('quizForm');
+const questions = [...document.querySelectorAll('.quiz-question')];
+const result = document.getElementById('result');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  let score = 0;
+  let attempted = 0;
+
+  questions.forEach(function(question) {
+    const selected = question.querySelector('input:checked');
+    const feedback = question.querySelector('.feedback');
+    const correct = question.dataset.answer;
+
+    if (selected) {
+      attempted++;
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct! ' + question.dataset.explanation;
+      } else {
+        feedback.className = 'feedback incorrect';
+        feedback.textContent = 'Incorrect. ' + question.dataset.explanation;
+      }
+    } else {
+      feedback.className = 'feedback incorrect';
+      feedback.textContent = 'Not attempted. ' + question.dataset.explanation;
+    }
+  });
+
+  result.style.display = 'block';
+  result.innerHTML = '<strong>Your Score: ' + score + '/' +
+    questions.length + '</strong><br>Attempted: ' + attempted +
+    '/' + questions.length + '. Review the explanations above.';
+  result.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+  form.reset();
+  questions.forEach(function(question) {
+    const feedback = question.querySelector('.feedback');
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+  });
+  result.style.display = 'none';
+});
+</script>
+</body>
+</html>
