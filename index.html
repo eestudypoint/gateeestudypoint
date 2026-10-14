@@ -4,166 +4,351 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GATE EE Study Point</title>
   <meta name="description" content="Free GATE Electrical Engineering notes, formulas, PYQs and practice resources.">
+  <title>GATE EE Study Point | Learn. Practice. Excel.</title>
   <style>
+    :root {
+      --navy: #10213a;
+      --blue: #2563eb;
+      --light: #f5f7fb;
+      --text: #17243b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #17243a;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
     }
+    a { text-decoration: none; }
+    .container { width: min(1120px, 90%); margin: auto; }
     header {
-      background: #102544;
-      color: white;
-      padding: 20px 7%;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    nav {
+    .nav {
+      min-height: 76px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 20px;
     }
-    nav a {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+    }
+    .logo {
+      background: var(--blue);
       color: white;
-      text-decoration: none;
-      margin-left: 16px;
+      padding: 8px 10px;
+      border-radius: 10px;
     }
+    .links { display: flex; gap: 25px; align-items: center; }
+    .links a { color: #475569; font-size: 14px; font-weight: 600; }
+    .links a:hover { color: var(--blue); }
     .hero {
-      background: linear-gradient(135deg, #102544, #1769aa);
+      background: linear-gradient(125deg, #10213a, #1d4ed8);
       color: white;
-      padding: 75px 7%;
-      text-align: center;
+      padding: 78px 0 72px;
+      overflow: hidden;
     }
-    .hero h1 { font-size: clamp(32px, 5vw, 52px); margin: 0 0 16px; }
-    .hero p { font-size: 18px; line-height: 1.7; }
+    .hero-content { max-width: 760px; }
+    .tag {
+      display: inline-block;
+      background: #ffffff1c;
+      border: 1px solid #ffffff40;
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(35px, 5.5vw, 60px);
+      line-height: 1.12;
+      letter-spacing: -1.5px;
+      margin: 22px 0 18px;
+    }
+    .hero h1 span { color: #93c5fd; }
+    .hero p {
+      max-width: 610px;
+      color: #dbeafe;
+      font-size: 17px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .btn {
       display: inline-block;
-      background: #ffcc66;
-      color: #17243a;
-      padding: 13px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 14px;
+      padding: 12px 19px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 14px;
     }
-    main { padding: 35px 7%; }
-    h2 { text-align: center; margin-bottom: 25px; }
+    .primary { background: white; color: var(--navy); }
+    .secondary { border: 1px solid #ffffff70; color: white; }
+    .section { padding: 58px 0; }
+    .section-head { margin-bottom: 25px; }
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      font-size: 11px;
+    }
+    h2 { font-size: clamp(25px, 3vw, 34px); margin: 5px 0; }
+    .sub { color: var(--muted); margin: 4px 0; }
+    .search-wrap { margin: 24px 0; }
+    .search {
+      width: 100%;
+      padding: 15px 17px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: white;
+      font-size: 15px;
+      outline-color: var(--blue);
+    }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
     .card {
       background: white;
       padding: 23px;
-      border-radius: 12px;
-      box-shadow: 0 3px 15px #152b4810;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      transition: transform .2s, box-shadow .2s;
     }
-    .card h3 { color: #1769aa; }
-    .card p { line-height: 1.6; color: #536176; }
-    .card a { color: #1769aa; font-weight: bold; }
-    .notice {
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px #10213a0d;
+    }
+    .subject-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #eff6ff;
+      font-size: 23px;
+    }
+    .card h3 { margin: 15px 0 6px; font-size: 18px; }
+    .card p { color: var(--muted); font-size: 14px; margin: 0 0 15px; }
+    .card a { color: var(--blue); font-weight: 700; font-size: 13px; }
+    .resources { background: white; }
+    .resource-card { background: var(--light); border-color: #edf0f5; }
+    .banner {
+      background: #eaf1ff;
+      border: 1px solid #d6e4ff;
+      padding: 30px;
+      border-radius: 16px;
       text-align: center;
-      background: white;
-      padding: 25px;
-      margin-top: 30px;
-      border-radius: 12px;
     }
+    .banner p { color: var(--muted); }
     footer {
-      background: #102544;
-      color: white;
+      background: var(--navy);
+      color: #dbe4f1;
+      padding: 28px 0;
       text-align: center;
-      padding: 22px;
-      margin-top: 30px;
+      font-size: 13px;
+    }
+    footer p { margin: 5px 0; }
+    .empty { display: none; color: var(--muted); padding: 15px 0; }
+    @media (max-width: 760px) {
+      .nav { padding: 13px 0; align-items: flex-start; flex-direction: column; gap: 12px; }
+      .links { gap: 18px; flex-wrap: wrap; }
+      .hero { padding: 54px 0; }
+      .hero p { font-size: 15px; }
+      .section { padding: 42px 0; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .card { padding: 16px; }
+      .card h3 { font-size: 16px; }
+    }
+    @media (max-width: 440px) {
+      .grid { grid-template-columns: 1fr; }
+      .brand { font-size: 15px; }
+      .links { gap: 13px; }
+      .links a { font-size: 13px; }
+      .banner { padding: 22px 16px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <nav>
-      <strong>⚡ GATE EE Study Point</strong>
-      <div>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <span class="logo">⚡</span>
+        <span>GATE EE Study Point</span>
+      </a>
+      <nav class="links" aria-label="Main navigation">
         <a href="#subjects">Subjects</a>
         <a href="#resources">Resources</a>
-      </div>
-    </nav>
+        <a href="#about">About</a>
+      </nav>
+    </div>
   </header>
 
   <section class="hero">
-    <h1>Crack GATE EE with Confidence</h1>
-    <p>Your learning hub for Electrical Engineering.<br>
-    Learn concepts, revise formulas and practise questions.</p>
-    <a class="btn" href="#subjects">Explore Subjects ↓</a>
+    <div class="container hero-content">
+      <span class="tag">YOUR GATE EE LEARNING HUB</span>
+      <h1>Understand Concepts.<br><span>Master GATE EE.</span></h1>
+      <p>Prepare smarter with subject-wise study resources, formula revision and practice for Electrical Engineering aspirants.</p>
+      <div class="actions">
+        <a class="btn primary" href="#subjects">Explore Subjects →</a>
+        <a class="btn secondary" href="#resources">Study Resources</a>
+      </div>
+    </div>
   </section>
 
   <main>
-    <section id="subjects">
-      <h2>📚 Explore Electrical Engineering</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>🔌 Network Theory</h3>
-          <p>Circuit analysis, network theorems and transient response.</p>
+    <section class="section container" id="subjects">
+      <div class="section-head">
+        <span class="eyebrow">Build your concepts</span>
+        <h2>Explore EE Subjects</h2>
+        <p class="sub">Find your subject and start preparing topic by topic.</p>
+      </div>
+
+      <div class="search-wrap">
+        <input class="search" id="search" type="search"
+          placeholder="🔎 Search subjects, e.g. Network Theory..."
+          aria-label="Search subjects">
+      </div>
+
+      <div class="grid" id="subjectGrid">
+        <article class="card" data-search="network theory circuits">
+          <div class="subject-icon">🔌</div>
+          <h3>Network Theory</h3>
+          <p>Circuit analysis, network theorems and transients.</p>
           <a href="#resources">Explore resources →</a>
         </article>
-        <article class="card">
-          <h3>⚙️ Electrical Machines</h3>
+        <article class="card" data-search="electrical machines transformer dc induction">
+          <div class="subject-icon">⚙️</div>
+          <h3>Electrical Machines</h3>
           <p>Transformers, DC machines and induction machines.</p>
           <a href="#resources">Explore resources →</a>
         </article>
-        <article class="card">
-          <h3>🎛️ Control Systems</h3>
+        <article class="card" data-search="control systems stability response">
+          <div class="subject-icon">🎛️</div>
+          <h3>Control Systems</h3>
           <p>Block diagrams, stability and frequency response.</p>
           <a href="#resources">Explore resources →</a>
         </article>
-        <article class="card">
-          <h3>⚡ Power Systems</h3>
-          <p>Power flow, faults, protection and stability.</p>
+        <article class="card" data-search="power systems faults protection">
+          <div class="subject-icon">⚡</div>
+          <h3>Power Systems</h3>
+          <p>Power flow, fault analysis and protection.</p>
           <a href="#resources">Explore resources →</a>
         </article>
-        <article class="card">
-          <h3>📈 Signals & Systems</h3>
-          <p>Continuous-time and discrete-time signal analysis.</p>
+        <article class="card" data-search="signals systems">
+          <div class="subject-icon">📈</div>
+          <h3>Signals & Systems</h3>
+          <p>Signal analysis and system properties.</p>
           <a href="#resources">Explore resources →</a>
         </article>
-        <article class="card">
-          <h3>📐 Engineering Mathematics</h3>
-          <p>Linear algebra, calculus, probability and differential equations.</p>
+        <article class="card" data-search="engineering mathematics calculus algebra probability">
+          <div class="subject-icon">📐</div>
+          <h3>Engineering Mathematics</h3>
+          <p>Linear algebra, calculus and probability.</p>
+          <a href="#resources">Explore resources →</a>
+        </article>
+        <article class="card" data-search="electrical electronic measurements">
+          <div class="subject-icon">📏</div>
+          <h3>Measurements</h3>
+          <p>Measuring instruments and measurement systems.</p>
+          <a href="#resources">Explore resources →</a>
+        </article>
+        <article class="card" data-search="analog digital electronics">
+          <div class="subject-icon">💡</div>
+          <h3>Analog & Digital Electronics</h3>
+          <p>Electronic circuits and digital fundamentals.</p>
+          <a href="#resources">Explore resources →</a>
+        </article>
+        <article class="card" data-search="electromagnetic fields">
+          <div class="subject-icon">🧲</div>
+          <h3>Electromagnetic Fields</h3>
+          <p>Fields, waves and electromagnetic theory.</p>
           <a href="#resources">Explore resources →</a>
         </article>
       </div>
+      <p class="empty" id="empty">No matching subjects found. Try another search.</p>
     </section>
 
-    <section id="resources">
-      <h2 style="margin-top:45px">🎯 Study Resources</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Formula Sheets</h3>
-          <p>Quick revision material for important GATE EE formulas.</p>
-        </article>
-        <article class="card">
-          <h3>Previous Year Questions</h3>
-          <p>Organise GATE questions by subject and year.</p>
-        </article>
-        <article class="card">
-          <h3>Practice Questions</h3>
-          <p>Build your concepts with topic-wise practice.</p>
-        </article>
+    <section class="section resources" id="resources">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Prepare effectively</span>
+          <h2>Study Resources</h2>
+          <p class="sub">Your starting point for structured GATE EE preparation.</p>
+        </div>
+        <div class="grid">
+          <article class="card resource-card">
+            <div class="subject-icon">📝</div>
+            <h3>Formula Sheets</h3>
+            <p>Quick revision sheets for important formulas.</p>
+            <a href="#about">Coming soon</a>
+          </article>
+          <article class="card resource-card">
+            <div class="subject-icon">📚</div>
+            <h3>Previous Year Questions</h3>
+            <p>Organise practice by subject and exam year.</p>
+            <a href="#about">Coming soon</a>
+          </article>
+          <article class="card resource-card">
+            <div class="subject-icon">✅</div>
+            <h3>Practice Quizzes</h3>
+            <p>Test your concepts with topic-wise questions.</p>
+            <a href="#about">Coming soon</a>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="notice">
-      <h2>Learn. Practise. Improve.</h2>
-      <p>Free learning resources for every Electrical Engineering aspirant.</p>
-      <p><strong>New study materials will be added here.</strong></p>
+    <section class="section container" id="about">
+      <div class="banner">
+        <span class="eyebrow">Learn · Practise · Improve</span>
+        <h2>Your GATE EE Journey Starts Here</h2>
+        <p>A growing study hub for Electrical Engineering students.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 GATE EE Study Point</p>
-    <p>Built for Electrical Engineering aspirants.</p>
+    <div class="container">
+      <p><strong>⚡ GATE EE Study Point</strong></p>
+      <p>Free learning resources for Electrical Engineering aspirants.</p>
+      <p>© 2026 GATE EE Study Point</p>
+    </div>
   </footer>
+
+  <script>
+    const search = document.getElementById('search');
+    const cards = document.querySelectorAll('#subjectGrid .card');
+    const empty = document.getElementById('empty');
+
+    search.addEventListener('input', function () {
+      const query = this.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(function (card) {
+        const matches = card.dataset.search.includes(query) ||
+          card.innerText.toLowerCase().includes(query);
+        card.style.display = matches ? '' : 'none';
+        if (matches) visible++;
+      });
+
+      empty.style.display = visible ? 'none' : 'block';
+    });
+  </script>
 </body>
 </html>
+
