@@ -3,11 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GATE EE Formula Sheets</title>
+  <title>Network Theory Formula Sheets | GATE EE Study Point</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #17243b;
+      line-height: 1.6;
+    }
+    header {
+      background: #10213a;
+      color: white;
+      padding: 20px;
+    }
+    header a { color: white; text-decoration: none; }
+    .container { width: min(1000px, 92%); margin: auto; }
+    .hero {
+      background: linear-gradient(120deg, #10213a, #2563eb);
+      color: white;
+      padding: 35px 0;
+    }
+    .hero h1 { margin: 0 0 8px; font-size: 34px; }
+    .hero p { margin: 0; color: #dbeafe; }
+    main { padding: 25px 0 45px; }
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h2 { font-size: 19px; margin-top: 0; }
+    .formula {
+      background: #eff6ff;
+      padding: 10px;
+      border-left: 4px solid #2563eb;
+      border-radius: 5px;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+    .note { color: #64748b; font-size: 13px; }
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    footer {
+      background: #10213a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    @media print {
+      header, input, .back, footer { display: none; }
+      body { background: white; }
+    }
+  </style>
 </head>
 <body>
-  <h1>GATE EE Formula Sheets</h1>
-  <p>Electrical Engineering formula sheets will be added here.</p>
-  <a href="index.html">← Back to Home</a>
+  <header>
+    <div class="container">
+      <a href="index.html">⚡ GATE EE Study Point ← Home</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Network Theory Formula Sheets</h1>
+      <p>Important formulas for GATE Electrical Engineering revision.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <input id="search" type="search"
+      placeholder="Search formulas: KCL, Thevenin, resonance...">
+
+    <div class="grid" id="formulas">
+      <article class="card">
+        <h2>Ohm's Law</h2>
+        <p class="formula">V = IR</p>
+        <p class="note">Voltage = Current × Resistance.</p>
+      </article>
+
+      <article class="card">
+        <h2>Kirchhoff's Current Law</h2>
+        <p class="formula">Σ I entering = Σ I leaving</p>
+        <p class="note">Current conservation at a node.</p>
+      </article>
+
+      <article class="card">
+        <h2>Kirchhoff's Voltage Law</h2>
+        <p class="formula">Σ V around a closed loop = 0</p>
+        <p class="note">Voltage rises and drops sum to zero.</p>
+      </article>
+
+      <article class="card">
+        <h2>Thevenin's Theorem</h2>
+        <p class="formula">Vth = Open-circuit voltage</p>
+        <p class="formula">Rth = Resistance seen at terminals</p>
+      </article>
+
+      <article class="card">
+        <h2>Norton's Theorem</h2>
+        <p class="formula">In = Short-circuit current</p>
+        <p class="formula">Rn = Rth</p>
+      </article>
+
+      <article class="card">
+        <h2>Maximum Power Transfer</h2>
+        <p class="formula">RL = Rth</p>
+        <p class="formula">Pmax = Vth² / (4Rth)</p>
+        <p class="note">For a DC resistive network.</p>
+      </article>
+
+      <article class="card">
+        <h2>Capacitor</h2>
+        <p class="formula">i = C (dv/dt)</p>
+        <p class="formula">W = ½CV²</p>
+      </article>
+
+      <article class="card">
+        <h2>Inductor</h2>
+        <p class="formula">v = L (di/dt)</p>
+        <p class="formula">W = ½LI²</p>
+      </article>
+
+      <article class="card">
+        <h2>RC Time Constant</h2>
+        <p class="formula">τ = RC</p>
+      </article>
+
+      <article class="card">
+        <h2>RL Time Constant</h2>
+        <p class="formula">τ = L/R</p>
+      </article>
+
+      <article class="card">
+        <h2>Angular Frequency</h2>
+        <p class="formula">ω = 2πf</p>
+      </article>
+
+      <article class="card">
+        <h2>Series RLC Resonance</h2>
+        <p class="formula">f₀ = 1 / (2π√LC)</p>
+        <p class="note">At resonance, inductive and capacitive reactances are equal.</p>
+      </article>
+    </div>
+
+    <button onclick="window.print()" style="margin-top:20px;padding:12px 18px;cursor:pointer">
+      Print / Save as PDF
+    </button>
+
+    <p><a class="back" href="network-theory.html">← Open Network Theory Notes and MCQs</a></p>
+  </main>
+
+  <footer>
+    GATE EE Study Point · Free Electrical Engineering Resources
+  </footer>
+
+  <script>
+    const search = document.getElementById("search");
+    const cards = document.querySelectorAll("#formulas .card");
+
+    search.addEventListener("input", function () {
+      const query = this.value.toLowerCase().trim();
+      cards.forEach(function (card) {
+        card.style.display = card.innerText.toLowerCase().includes(query)
+          ? ""
+          : "none";
+      });
+    });
+  </script>
 </body>
 </html>
